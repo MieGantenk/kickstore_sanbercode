@@ -62,10 +62,6 @@ class LoginController extends GetxController {
     if (value == null || value.isEmpty) {
       return 'Kata sandi wajib diisi';
     }
-    final passwordRegex = RegExp(r'[0-9]');
-    if (!passwordRegex.hasMatch(value)) {
-      return 'Minimal mengandung 1 karakter angka';
-    }
     if (value.length < 6) {
       return 'Kata sandi minimal 6 karakter';
     }

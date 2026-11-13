@@ -54,7 +54,9 @@ class CheckoutView extends GetView<CheckoutController> {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.darkTextPrimary
+                    : AppColors.lightTextPrimary,
               ),
             ),
             const SizedBox(height: 12),
@@ -79,7 +81,8 @@ class CheckoutView extends GetView<CheckoutController> {
               maxLines: 3,
               decoration: const InputDecoration(
                 labelText: 'Alamat Lengkap Rumah',
-                hintText: 'Nama jalan, nomor rumah, RT/RW, kelurahan, kecamatan, kota/kabupaten',
+                hintText:
+                    'Nama jalan, nomor rumah, RT/RW, kelurahan, kecamatan, kota/kabupaten',
                 prefixIcon: Icon(Icons.location_on_outlined),
               ),
             ),
@@ -91,7 +94,9 @@ class CheckoutView extends GetView<CheckoutController> {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.darkTextPrimary
+                    : AppColors.lightTextPrimary,
               ),
             ),
             const SizedBox(height: 12),
@@ -101,7 +106,8 @@ class CheckoutView extends GetView<CheckoutController> {
                   _buildPaymentOption(
                     index: 0,
                     title: 'COD (Bayar di Tempat)',
-                    subtitle: 'Bayar tunai kepada kurir saat sneakers sampai di rumah',
+                    subtitle:
+                        'Bayar tunai kepada kurir saat sneakers sampai di rumah',
                     icon: Icons.local_shipping_outlined,
                     selectedIndex: selectedPaymentMethod.value,
                     onTap: () => selectedPaymentMethod.value = 0,
@@ -140,15 +146,31 @@ class CheckoutView extends GetView<CheckoutController> {
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                      color: isDark
+                          ? AppColors.darkTextPrimary
+                          : AppColors.lightTextPrimary,
                     ),
                   ),
                   const SizedBox(height: 12),
-                  _buildPriceRow('Total Harga Barang (2 item)', 'Rp 5.398.000', isDark),
+                  _buildPriceRow(
+                    'Total Harga Barang (2 item)',
+                    'Rp 5.398.000',
+                    isDark,
+                  ),
                   const SizedBox(height: 6),
-                  _buildPriceRow('Diskon Promosi', '- Rp 150.000', isDark, isDiscount: true),
+                  _buildPriceRow(
+                    'Diskon Promosi',
+                    '- Rp 150.000',
+                    isDark,
+                    isDiscount: true,
+                  ),
                   const SizedBox(height: 6),
-                  _buildPriceRow('Ongkos Kirim', 'GRATIS', isDark, isFree: true),
+                  _buildPriceRow(
+                    'Ongkos Kirim',
+                    'GRATIS',
+                    isDark,
+                    isFree: true,
+                  ),
                   const Divider(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -158,7 +180,9 @@ class CheckoutView extends GetView<CheckoutController> {
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
-                          color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                          color: isDark
+                              ? AppColors.darkTextPrimary
+                              : AppColors.lightTextPrimary,
                         ),
                       ),
                       const Text(
@@ -197,7 +221,10 @@ class CheckoutView extends GetView<CheckoutController> {
             onPressed: () {
               Get.defaultDialog(
                 title: 'Pesanan Berhasil! 🎉',
-                titleStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                titleStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
                 middleText:
                     'Terima kasih! Pesanan sneakers impianmu sedang diproses dan tersimpan ke cloud.',
                 textConfirm: 'Lihat Riwayat Pesanan',
@@ -222,7 +249,9 @@ class CheckoutView extends GetView<CheckoutController> {
           width: 28,
           height: 28,
           decoration: BoxDecoration(
-            color: isActive ? AppColors.primary : (isDark ? AppColors.darkBorder : Colors.grey.shade300),
+            color: isActive
+                ? AppColors.primary
+                : (isDark ? AppColors.darkBorder : Colors.grey.shade300),
             shape: BoxShape.circle,
           ),
           child: Center(
@@ -244,7 +273,9 @@ class CheckoutView extends GetView<CheckoutController> {
             fontWeight: isActive ? FontWeight.bold : FontWeight.w500,
             color: isActive
                 ? AppColors.primary
-                : (isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary),
+                : (isDark
+                      ? AppColors.darkTextSecondary
+                      : AppColors.lightTextSecondary),
           ),
         ),
       ],
@@ -279,7 +310,9 @@ class CheckoutView extends GetView<CheckoutController> {
           color: isDark ? AppColors.darkSurfaceCard : Colors.white,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: isSelected ? AppColors.primary : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
+            color: isSelected
+                ? AppColors.primary
+                : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
             width: isSelected ? 2 : 1,
           ),
         ),
@@ -288,7 +321,9 @@ class CheckoutView extends GetView<CheckoutController> {
             Icon(
               icon,
               size: 28,
-              color: isSelected ? AppColors.primary : (isDark ? Colors.white70 : Colors.black54),
+              color: isSelected
+                  ? AppColors.primary
+                  : (isDark ? Colors.white70 : Colors.black54),
             ),
             const SizedBox(width: 14),
             Expanded(
@@ -300,7 +335,9 @@ class CheckoutView extends GetView<CheckoutController> {
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
-                      color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                      color: isDark
+                          ? AppColors.darkTextPrimary
+                          : AppColors.lightTextPrimary,
                     ),
                   ),
                   const SizedBox(height: 2),
@@ -308,7 +345,9 @@ class CheckoutView extends GetView<CheckoutController> {
                     subtitle,
                     style: TextStyle(
                       fontSize: 11,
-                      color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+                      color: isDark
+                          ? AppColors.darkTextSecondary
+                          : AppColors.lightTextSecondary,
                     ),
                   ),
                 ],
@@ -326,13 +365,20 @@ class CheckoutView extends GetView<CheckoutController> {
     );
   }
 
-  Widget _buildPriceRow(String label, String value, bool isDark,
-      {bool isDiscount = false, bool isFree = false}) {
+  Widget _buildPriceRow(
+    String label,
+    String value,
+    bool isDark, {
+    bool isDiscount = false,
+    bool isFree = false,
+  }) {
     Color textColor;
     if (isDiscount || isFree) {
       textColor = AppColors.success;
     } else {
-      textColor = isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary;
+      textColor = isDark
+          ? AppColors.darkTextPrimary
+          : AppColors.lightTextPrimary;
     }
 
     return Row(
@@ -342,14 +388,18 @@ class CheckoutView extends GetView<CheckoutController> {
           label,
           style: TextStyle(
             fontSize: 13,
-            color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+            color: isDark
+                ? AppColors.darkTextSecondary
+                : AppColors.lightTextSecondary,
           ),
         ),
         Text(
           value,
           style: TextStyle(
             fontSize: 13,
-            fontWeight: isDiscount || isFree ? FontWeight.bold : FontWeight.w500,
+            fontWeight: isDiscount || isFree
+                ? FontWeight.bold
+                : FontWeight.w500,
             color: textColor,
           ),
         ),
