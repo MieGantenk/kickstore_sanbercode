@@ -25,7 +25,8 @@ class OrdersView extends GetView<OrdersController> {
         'size': 42,
         'qty': 1,
         'total': 'Rp 2.499.000',
-        'image': 'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=500&q=80',
+        'image':
+            'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=500&q=80',
       },
       {
         'id': 'ORD-20261018-088',
@@ -36,7 +37,8 @@ class OrdersView extends GetView<OrdersController> {
         'size': 40,
         'qty': 1,
         'total': 'Rp 1.099.000',
-        'image': 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500&q=80',
+        'image':
+            'https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500&q=80',
       },
       {
         'id': 'ORD-20261014-042',
@@ -47,7 +49,8 @@ class OrdersView extends GetView<OrdersController> {
         'size': 41,
         'qty': 1,
         'total': 'Rp 2.899.000',
-        'image': 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=500&q=80',
+        'image':
+            'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=500&q=80',
       },
     ];
 
@@ -84,16 +87,23 @@ class OrdersView extends GetView<OrdersController> {
                     borderRadius: BorderRadius.circular(20),
                     onTap: () => selectedTab.value = index,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
                       decoration: BoxDecoration(
                         color: isSelected
                             ? AppColors.primary
-                            : (isDark ? AppColors.darkSurfaceCard : Colors.white),
+                            : (isDark
+                                  ? AppColors.darkSurfaceCard
+                                  : Colors.white),
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
                           color: isSelected
                               ? AppColors.primary
-                              : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
+                              : (isDark
+                                    ? AppColors.darkBorder
+                                    : AppColors.lightBorder),
                         ),
                       ),
                       child: Center(
@@ -101,12 +111,14 @@ class OrdersView extends GetView<OrdersController> {
                           filterTabs[index],
                           style: TextStyle(
                             fontSize: 12,
-                            fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                            fontWeight: isSelected
+                                ? FontWeight.bold
+                                : FontWeight.w500,
                             color: isSelected
                                 ? Colors.white
                                 : (isDark
-                                    ? AppColors.darkTextSecondary
-                                    : AppColors.lightTextSecondary),
+                                      ? AppColors.darkTextSecondary
+                                      : AppColors.lightTextSecondary),
                           ),
                         ),
                       ),
@@ -134,7 +146,9 @@ class OrdersView extends GetView<OrdersController> {
                     color: isDark ? AppColors.darkSurfaceCard : Colors.white,
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
-                      color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
+                      color: isDark
+                          ? AppColors.darkBorder
+                          : AppColors.lightBorder,
                     ),
                   ),
                   child: Column(
@@ -158,7 +172,10 @@ class OrdersView extends GetView<OrdersController> {
                             ],
                           ),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 4,
+                            ),
                             decoration: BoxDecoration(
                               color: statusColor.withAlpha(25),
                               borderRadius: BorderRadius.circular(8),
@@ -179,7 +196,9 @@ class OrdersView extends GetView<OrdersController> {
                         order['date'] as String,
                         style: TextStyle(
                           fontSize: 11,
-                          color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
+                          color: isDark
+                              ? AppColors.darkTextMuted
+                              : AppColors.lightTextMuted,
                         ),
                       ),
                       const Divider(height: 20),
@@ -192,7 +211,9 @@ class OrdersView extends GetView<OrdersController> {
                             child: Container(
                               width: 64,
                               height: 64,
-                              color: isDark ? const Color(0xFF1E293B) : const Color(0xFFF1F5F9),
+                              color: isDark
+                                  ? const Color(0xFF1E293B)
+                                  : const Color(0xFFF1F5F9),
                               child: Image.network(
                                 order['image'] as String,
                                 fit: BoxFit.cover,
@@ -261,7 +282,10 @@ class OrdersView extends GetView<OrdersController> {
                           ),
                           OutlinedButton(
                             style: OutlinedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 14,
+                                vertical: 8,
+                              ),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
