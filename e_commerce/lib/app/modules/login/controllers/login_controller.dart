@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:e_commerce/app/core/services/auth_service.dart';
 import 'package:e_commerce/app/core/theme/app_colors.dart';
 import 'package:e_commerce/app/routes/app_pages.dart';
 
-/// Controller Manajemen Form Login (Sesi 04: Form Handling & Validasi Input)
+/// Controller Manajemen Form Login (Sesi 04 & 08: Form Handling, Validasi & Route Return)
 class LoginController extends GetxController {
   // GlobalKey untuk memvalidasi seluruh TextFormField dalam Form
   final formKey = GlobalKey<FormState>();
@@ -23,6 +24,13 @@ class LoginController extends GetxController {
     super.onInit();
     emailController = TextEditingController();
     passwordController = TextEditingController();
+
+    // Sesi 09: Jika pengguna sudah dalam status login aktif, arahkan kembali ke Beranda
+    if (Get.isRegistered<AuthService>() && AuthService.to.isLoggedIn.value) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.offAllNamed(Routes.HOME);
+      });
+    }
   }
 
   @override
@@ -71,7 +79,7 @@ class LoginController extends GetxController {
   // Aksi Masuk Akun
   Future<void> login() async {
     // 1. Jalankan validasi seluruh field form
-    if (!formKey.currentState!.validate()) {
+    if (formKey.currentState != null && !formKey.currentState!.validate()) {
       return;
     }
 
@@ -79,23 +87,55 @@ class LoginController extends GetxController {
     isLoading.value = true;
 
     try {
-      // Simulasi delay request jaringan (akan digantikan Firebase Auth di Sesi 09)
-      await Future.delayed(const Duration(milliseconds: 1200));
+      // Sesi 08 & 09: Simpan status login ke AuthService via Firebase Auth
+      if (Get.isRegistered<AuthService>()) {
+        await AuthService.to.login(
+          emailController.text.trim(),
+          passwordController.text,
+        );
+      }
 
-      Get.snackbar(
-        'Berhasil Masuk 🎉',
-        'Selamat datang kembali di KicksStore!',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: AppColors.success,
-        colorText: Colors.white,
-        margin: const EdgeInsets.all(16),
-        borderRadius: 12,
-        duration: const Duration(seconds: 2),
-        icon: const Icon(Icons.check_circle_outline, color: Colors.white),
-      );
+      if (!Get.testMode && Get.overlayContext != null) {
+        Get.snackbar(
+          'Berhasil Masuk 🎉',
+          'Selamat datang kembali di KicksStore!',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: AppColors.success,
+          colorText: Colors.white,
+          margin: const EdgeInsets.all(16),
+          borderRadius: 12,
+          duration: const Duration(seconds: 2),
+          icon: const Icon(Icons.check_circle_outline, color: Colors.white),
+        );
+      }
 
-      // Navigasi ke Beranda dan bersihkan riwayat rute auth
-      Get.offAllNamed(Routes.HOME);
+      // Sesi 08: Periksa apakah ada return route (misal dari pencegatan /checkout)
+      String? returnRoute;
+      if (Get.isRegistered<AuthService>()) {
+        returnRoute = AuthService.to.redirectRoute;
+        AuthService.to.redirectRoute = null;
+      }
+
+      if (returnRoute != null && returnRoute.isNotEmpty) {
+        Get.offNamed(returnRoute);
+      } else {
+        Get.offAllNamed(Routes.HOME);
+      }
+    } catch (e) {
+      if (!Get.testMode && Get.overlayContext != null) {
+        final errorMessage = AuthService.mapFirebaseAuthError(e);
+        Get.snackbar(
+          'Gagal Masuk',
+          errorMessage,
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: AppColors.error,
+          colorText: Colors.white,
+          margin: const EdgeInsets.all(16),
+          borderRadius: 12,
+          duration: const Duration(seconds: 3),
+          icon: const Icon(Icons.error_outline, color: Colors.white),
+        );
+      }
     } finally {
       isLoading.value = false;
     }

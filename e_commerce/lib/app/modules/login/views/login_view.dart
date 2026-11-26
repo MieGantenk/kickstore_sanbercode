@@ -130,26 +130,26 @@ class LoginView extends GetView<LoginController> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        Obx(
-                          () => Checkbox(
-                            value: controller.rememberMe.value,
-                            onChanged: controller.toggleRememberMe,
-                            activeColor: AppColors.primary,
-                          ),
-                        ),
-                        Text(
-                          'Ingat Saya',
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: isDark
-                                ? AppColors.darkTextSecondary
-                                : AppColors.lightTextSecondary,
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   children: [
+                    //     Obx(
+                    //       () => Checkbox(
+                    //         value: controller.rememberMe.value,
+                    //         onChanged: controller.toggleRememberMe,
+                    //         activeColor: AppColors.primary,
+                    //       ),
+                    //     ),
+                    //     Text(
+                    //       'Ingat Saya',
+                    //       style: TextStyle(
+                    //         fontSize: 13,
+                    //         color: isDark
+                    //             ? AppColors.darkTextSecondary
+                    //             : AppColors.lightTextSecondary,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     TextButton(
                       onPressed: () {
                         Get.snackbar(
